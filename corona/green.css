@@ -1,0 +1,92 @@
+/* CSS Document */
+
+body{margin: 0px; font-family: 'Roboto Mono', monospace; background: #111}
+
+.city{
+    float: left;
+    width: 16.65%;
+    height: 400px;
+}
+
+.row{
+    float: left;
+    width: 100%;
+}
+
+.center{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.text{
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 54px 72px;
+    margin: 72px 0;
+    line-height: 2em;
+}
+
+.controls{
+    margin-top: 54px;
+}
+
+.ctl-label{
+    width: 10%;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    background: #f0f0f0;
+    color: #333;
+    float: left;
+    text-align: center;
+}
+
+.ctl-input{
+    width: 15%;
+    height: 40px;
+    line-height: 40px;
+    background: #f0f0f0;
+    color: #333;
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+    border-left: 1px solid #ccc;
+}
+
+.ctl-input-lg{
+    width: 35%;
+    height: 40px;
+    line-height: 40px;
+    background: #f0f0f0;
+    color: #333;
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+hr{
+    margin: 0;
+    border: none;
+    border-top: 3px solid #ccc;
+    float: left;
+    width: 100%;
+}
+
+.ctl-bt{
+    width: 10%;
+    height: 40px;
+    line-height: 40px;
+    background: #ccc;
+    color: #333;
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+}

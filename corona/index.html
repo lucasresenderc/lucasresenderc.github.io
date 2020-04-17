@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01//EN' 'http://www.w3.org/TR/html4/strict.dtd'>
+<html lang='pt-br'>
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+	<meta name='description' content=''> <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<title>Lucas Resende.</title>
+	<link rel="stylesheet" type="text/css" href="green.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	
+	<div class="row">
+		<div class="center">
+			<div class="text">
+				<h1>SIR model with multiple cities</h1>
+				
+				The parameters are:<br>
+				- \(n\), the number of cities;<br>
+				- \(S_i(t)\), the fraction of susceptible people in city \(i\) at time \(t\);<br>
+				- \(I_i(t)\), the fraction of infected people in city \(i\) at time \(t\);<br>
+				- \(R_i(t)\), the fraction of removed people in city \(i\) at time \(t\);<br>
+				- \(p_{ij}\), the probability that someone in city \(i\) get in touch with someone from city \(j\);<br>
+				- \(\beta_i\), the transmission rate in city \(i\);<br>
+				- \(\gamma_i\), the removal rate in city \(i\);<br>
+				<br>
+
+				The equations are:
+				$$ \frac{dS_i}{dt} = -\beta_iS_i \sum_{j=1}^n I_jp_{ij} $$
+				$$ \frac{dI_i}{dt} = \beta_iS_i \sum_{j=1}^n I_jp_{ij} - \gamma_iI_i$$
+				$$ \frac{dR_i}{dt} = \gamma_iI_i$$
+				$$ S_i(0) \in (0,1), I_i(0) = 1-S_i(0), R_i(0)=0\forall i=1,\cdots,n$$
+
+			</div>
+		</div>
+	</div>
+
+	<div class="city" id="city0"></div>
+	<div class="city" id="city1"></div>
+	<div class="city" id="city2"></div>
+	<div class="city" id="city3"></div>
+	<div class="city" id="city4"></div>
+	<div class="city" id="city5"></div>
+
+	<div class="row">
+		<div class="center">
+			<div class="controls">
+				<label class="ctl-label">\(I(0)\)</label>
+				<input id="i0" class="ctl-input" type="text">
+				<input id="i1" class="ctl-input" type="text">
+				<input id="i2" class="ctl-input" type="text">
+				<input id="i3" class="ctl-input" type="text">
+				<input id="i4" class="ctl-input" type="text">
+				<input id="i5" class="ctl-input" type="text">
+
+				<hr>
+				<label class="ctl-label">\(\beta\)</label>
+				<input id="beta0" class="ctl-input" type="text">
+				<input id="beta1" class="ctl-input" type="text">
+				<input id="beta2" class="ctl-input" type="text">
+				<input id="beta3" class="ctl-input" type="text">
+				<input id="beta4" class="ctl-input" type="text">
+				<input id="beta5" class="ctl-input" type="text">
+
+				<hr>
+				<label class="ctl-label">\(\gamma\)</label>
+				<input id="gamma0" class="ctl-input" type="text">
+				<input id="gamma1" class="ctl-input" type="text">
+				<input id="gamma2" class="ctl-input" type="text">
+				<input id="gamma3" class="ctl-input" type="text">
+				<input id="gamma4" class="ctl-input" type="text">
+				<input id="gamma5" class="ctl-input" type="text">
+
+				<hr>
+				<label class="ctl-label">\(p_{0}\)</label>
+				<input id="p00" class="ctl-input" type="text">
+				<input id="p01" class="ctl-input" type="text">
+				<input id="p02" class="ctl-input" type="text">
+				<input id="p03" class="ctl-input" type="text">
+				<input id="p04" class="ctl-input" type="text">
+				<input id="p05" class="ctl-input" type="text">
+
+				<hr>
+				<label class="ctl-label">\(p_{1}\)</label>
+				<input id="p10" class="ctl-input" type="text">
+				<input id="p11" class="ctl-input" type="text">
+				<input id="p12" class="ctl-input" type="text">
+				<input id="p13" class="ctl-input" type="text">
+				<input id="p14" class="ctl-input" type="text">
+				<input id="p15" class="ctl-input" type="text">
+
+				<hr>
+				<label class="ctl-label">\(p_{2}\)</label>
+				<input id="p20" class="ctl-input" type="text">
+				<input id="p21" class="ctl-input" type="text">
+				<input id="p22" class="ctl-input" type="text">
+				<input id="p23" class="ctl-input" type="text">
+				<input id="p24" class="ctl-input" type="text">
+				<input id="p25" class="ctl-input" type="text">
+
+				<hr>
+				<label class="ctl-label">\(p_{3}\)</label>
+				<input id="p30" class="ctl-input" type="text">
+				<input id="p31" class="ctl-input" type="text">
+				<input id="p32" class="ctl-input" type="text">
+				<input id="p33" class="ctl-input" type="text">
+				<input id="p34" class="ctl-input" type="text">
+				<input id="p35" class="ctl-input" type="text">
+				
+
+				<hr>
+				<label class="ctl-label">\(p_{4}\)</label>
+				<input id="p40" class="ctl-input" type="text">
+				<input id="p41" class="ctl-input" type="text">
+				<input id="p42" class="ctl-input" type="text">
+				<input id="p43" class="ctl-input" type="text">
+				<input id="p44" class="ctl-input" type="text">
+				<input id="p45" class="ctl-input" type="text">
+				
+
+				<hr>
+				<label class="ctl-label">\(p_{5}\)</label>
+				<input id="p50" class="ctl-input" type="text">
+				<input id="p51" class="ctl-input" type="text">
+				<input id="p52" class="ctl-input" type="text">
+				<input id="p53" class="ctl-input" type="text">
+				<input id="p54" class="ctl-input" type="text">
+				<input id="p55" class="ctl-input" type="text">
+
+				<hr>
+				<label class="ctl-label">\(h\)</label>
+				<input id="h" class="ctl-input-lg" type="text">
+				<label class="ctl-label">\(T\)</label>
+				<input id="T" class="ctl-input-lg" type="text">
+				<input id="run" class="ctl-bt" type="button" value="run">
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="js/jq.js"></script>
+<script type="text/javascript" src="js/func.js"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+
+</html>
