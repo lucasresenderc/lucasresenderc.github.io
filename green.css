@@ -1,0 +1,126 @@
+/* CSS Document */
+
+body{margin: 0px; font-family: 'Spectral', serif;}
+
+#alg{
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    background: #fc6;
+    z-index: 1;
+}
+
+#animation{
+    width: 100%;
+}
+
+#site{
+    width: 100%;
+    float: left;
+    margin-top: -260px;
+    z-index: 2;
+    position: relative;
+}
+
+#center{
+    margin: 0 auto 0 auto;
+    width: 100%;
+    max-width: 880px;
+}
+
+.bs{
+    -moz-box-sizing:border-box;
+    box-sizing:border-box; 
+    -webkit-box-sizing:border-box;
+}
+
+.leftside{
+    width: 20%;
+    float: left;
+    text-align: right;
+    padding: 36px 24px 12px 12px;
+}
+
+.rightside{
+    width: 80%;
+    float: left;
+    padding: 36px 12px 12px 24px;
+}
+
+.hright{
+    padding-left: 24px;
+    text-align: right;
+}
+
+.full{
+    width: 100%;
+    float: left;
+}
+.half{
+    width: 50%;
+    float: left;
+}
+
+h1, h2{
+    font-size: 48px;
+    line-height: 1em;
+    font-weight: lighter;
+    font-style: italic;
+    margin: .5em 0;
+}
+
+h2{
+    font-size: 36px;
+}
+
+ul {
+    padding: 0;
+    margin: .75em 0;
+    font-size: 24px;
+    line-height: 48px;
+    font-style: italic;
+}
+li {
+    list-style-type: none;
+}
+
+#page a {
+    color: white;
+    background: black;
+    text-decoration: none; /* no underline */
+    font-style: italic;
+}
+
+#page a:hover {
+    background: #333;
+}
+
+#menu a {
+    color: inherit;
+    text-decoration: none; /* no underline */
+    opacity: .8;
+}
+
+#menu a:hover {
+    opacity: 1;
+}
+
+p{
+    font-size: 18px;
+}
+
+footer{
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+    text-align: right;
+    margin: 48px 0;
+}
+
+footer span{
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 1px 4px;
+}
