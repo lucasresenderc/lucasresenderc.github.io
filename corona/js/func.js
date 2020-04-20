@@ -41,15 +41,27 @@ function simulate( n, b, g, p, I0, h, iterations ){
 
     // iterating using euler method
     for (let t = 0; t < iterations; t++) {
-        slopes = slope( n, b, g, p, S[t], I[t] )
+        now_slopes = slope( n, b, g, p, S[t], I[t] )
+        predictS = Array(n).fill(0)
+        predictI = Array(n).fill(0)
+        predictR = Array(n).fill(0)
+
+        for (let i = 0; i < n; i++) {
+            predictS[i] += S[t][i] + h*now_slopes[0][i]
+            predictI[i] += I[t][i] + h*now_slopes[1][i]
+            predictR[i] += R[t][i] + h*now_slopes[2][i]
+        }
+
+        next_slopes = slope( n, b, g, p, predictS, predictI )
+
         newS = Array(n).fill(0)
         newI = Array(n).fill(0)
         newR = Array(n).fill(0)
 
         for (let i = 0; i < n; i++) {
-            newS[i] += S[t][i] + h*slopes[0][i]
-            newI[i] += I[t][i] + h*slopes[1][i]
-            newR[i] += R[t][i] + h*slopes[2][i]
+            newS[i] += S[t][i] + .5*h*now_slopes[0][i]+ .5*h*next_slopes[0][i]
+            newI[i] += I[t][i] + .5*h*now_slopes[1][i]+ .5*h*next_slopes[1][i]
+            newR[i] += R[t][i] + .5*h*now_slopes[2][i]+ .5*h*next_slopes[2][i]
         }
 
         S.push( newS )
@@ -69,25 +81,18 @@ $(document).ready(function() {
     n = 6
     b = [.6, .5, .51, .52, .53, .54]
     g = [.4, .35, .36, .37, .38, .39]
-    p = [
-        [.9, .05, .05, .05, .05, .05],
-        [.1, .85, .01, .01, .01, .02],
-        [.1, .005, .865, .01, .01, .01],
-        [.1, .005, .01, .865, .01, .01],
-        [.1, .005, .01, .01, .865, .01],
-        [.1, .005, .01, .01, .01, .865]
-    ]
+    s = [100000, 15000, 10000, 10000, 10000, 10000]
+    t = [.5, .5, .5, .5, .5, .5]
     I0 = [.000005, 0, 0, 0, 0, 0]
     h = .1
-    iterations = 2000
+    iterations = 1000
 
     for(let i=0; i<n; i++){
         $("#beta"+i).val( b[i] )
         $("#gamma"+i).val( g[i] )
         $("#i"+i).val( I0[i] )
-        for(let j=0; j<n; j++){
-            $( ("#p"+i)+j ).val( p[i][j] )
-        }
+        $("#s"+i).val( s[i] )
+        $("#t"+i).val( t[i] )
     }
     $("#h").val( h )
     $("#T").val( h*iterations )
@@ -98,37 +103,60 @@ $(document).ready(function() {
         n = 6
         b = Array(n)
         g = Array(n)
-        p = []
-        for(let i=0; i<n; i++){
-            p.push( Array(n) )
-        }
+        s = Array(n)
+        t = Array(n)
         I0 = Array(n)
+        p = []
+        totals = 0
 
         for(let i=0; i<n; i++){
             b[i] = parseFloat($("#beta"+i).val())
             g[i] = parseFloat($("#gamma"+i).val())
             I0[i] = parseFloat($("#i"+i).val())
-            for(let j=0; j<n; j++){
-                p[i][j] = parseFloat($( ("#p"+i)+j ).val())
-            }
+            s[i] = parseFloat($("#s"+i).val())
+            totals += s[i]
+            t[i] = parseFloat($("#t"+i).val())
+            p.push( Array(n) )
         }
         h = parseFloat($("#h").val())
         iterations = parseFloat($("#T").val())/h
+
+        //construct p
+        for(let i=0; i<n; i++){
+            p[i][i] = 1
+            for(let j=0; j<n; j++){
+                if( j != i ){
+                    p[i][j] = t[i]*s[j]*t[j]/totals
+                    p[i][i] -= p[i][j]
+                }
+            }
+        }
 
         values = simulate( n, b, g, p, I0, h, iterations )
         S = values[0]
         I = values[1]
         R = values[2]
 
+        // create html spaces
+        first = parseInt( $('#run').data('start') )
+        
+        newtext = '<div class="city-cnt"><div class="row"><span class="close">x</span></div>'
+        for( let i = 0; i<n; i++){
+            newtext += '<div class="city" id="city'+(first+i)+'"></div>'
+        }
+        $( "#cities" ).html( $( "#cities" ).html() + newtext + '</div>' )
+
+        $('#run').data('start', first+n )
+
         // plot
         google.charts.load('current', {'packages':['corechart']});
         for(let i =0; i<n; i++){    
             google.setOnLoadCallback(function() {
-                drawChart(S,I,R, i, h, iterations);
+                drawChart(S,I,R, i, h, iterations, first);
             });
         }
 
-        function drawChart(S, I, R, city, h, iterations) {
+        function drawChart(S, I, R, city, h, iterations, first) {
             data = [['Time', 'S', 'I', 'R']]
 
             for( let t = 0; t<iterations; t++ ){
@@ -156,10 +184,14 @@ $(document).ready(function() {
                 },
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('city'+city));
+            var chart = new google.visualization.LineChart(document.getElementById('city'+(city+first)));
 
             chart.draw(data, options);
         }
     });
 
+});
+
+$("body").on("click", ".close", function(){
+    $(this).parent().parent().remove();
 });

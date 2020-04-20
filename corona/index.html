@@ -30,16 +30,15 @@
 				$$ \frac{dR_i}{dt} = \gamma_iI_i$$
 				$$ S_i(0) \in (0,1), I_i(0) = 1-S_i(0), R_i(0)=0\forall i=1,\cdots,n$$
 
+				And the probabilities \( p_{ij} \) are obtained by the parameters \(t_i\) and the sizes \(s_i\) of each city using the following rule:
+				$$ p_{ij} = t_i t_j \frac{ s_j }{ \sum_{k=1}^n s_k }\text{ if }i\neq j \text{ and } p_{ii} = 1 - \sum_{j\neq i} p_{ij}$$
+
+
 			</div>
 		</div>
 	</div>
 
-	<div class="city" id="city0"></div>
-	<div class="city" id="city1"></div>
-	<div class="city" id="city2"></div>
-	<div class="city" id="city3"></div>
-	<div class="city" id="city4"></div>
-	<div class="city" id="city5"></div>
+	<div id="cities"></div>
 
 	<div class="row">
 		<div class="center">
@@ -71,67 +70,29 @@
 				<input id="gamma5" class="ctl-input" type="text">
 
 				<hr>
-				<label class="ctl-label">\(p_{0}\)</label>
-				<input id="p00" class="ctl-input" type="text">
-				<input id="p01" class="ctl-input" type="text">
-				<input id="p02" class="ctl-input" type="text">
-				<input id="p03" class="ctl-input" type="text">
-				<input id="p04" class="ctl-input" type="text">
-				<input id="p05" class="ctl-input" type="text">
+				<label class="ctl-label">\(size\)</label>
+				<input id="s0" class="ctl-input" type="text">
+				<input id="s1" class="ctl-input" type="text">
+				<input id="s2" class="ctl-input" type="text">
+				<input id="s3" class="ctl-input" type="text">
+				<input id="s4" class="ctl-input" type="text">
+				<input id="s5" class="ctl-input" type="text">
 
 				<hr>
-				<label class="ctl-label">\(p_{1}\)</label>
-				<input id="p10" class="ctl-input" type="text">
-				<input id="p11" class="ctl-input" type="text">
-				<input id="p12" class="ctl-input" type="text">
-				<input id="p13" class="ctl-input" type="text">
-				<input id="p14" class="ctl-input" type="text">
-				<input id="p15" class="ctl-input" type="text">
-
-				<hr>
-				<label class="ctl-label">\(p_{2}\)</label>
-				<input id="p20" class="ctl-input" type="text">
-				<input id="p21" class="ctl-input" type="text">
-				<input id="p22" class="ctl-input" type="text">
-				<input id="p23" class="ctl-input" type="text">
-				<input id="p24" class="ctl-input" type="text">
-				<input id="p25" class="ctl-input" type="text">
-
-				<hr>
-				<label class="ctl-label">\(p_{3}\)</label>
-				<input id="p30" class="ctl-input" type="text">
-				<input id="p31" class="ctl-input" type="text">
-				<input id="p32" class="ctl-input" type="text">
-				<input id="p33" class="ctl-input" type="text">
-				<input id="p34" class="ctl-input" type="text">
-				<input id="p35" class="ctl-input" type="text">
-				
-
-				<hr>
-				<label class="ctl-label">\(p_{4}\)</label>
-				<input id="p40" class="ctl-input" type="text">
-				<input id="p41" class="ctl-input" type="text">
-				<input id="p42" class="ctl-input" type="text">
-				<input id="p43" class="ctl-input" type="text">
-				<input id="p44" class="ctl-input" type="text">
-				<input id="p45" class="ctl-input" type="text">
-				
-
-				<hr>
-				<label class="ctl-label">\(p_{5}\)</label>
-				<input id="p50" class="ctl-input" type="text">
-				<input id="p51" class="ctl-input" type="text">
-				<input id="p52" class="ctl-input" type="text">
-				<input id="p53" class="ctl-input" type="text">
-				<input id="p54" class="ctl-input" type="text">
-				<input id="p55" class="ctl-input" type="text">
+				<label class="ctl-label">\(t\)</label>
+				<input id="t0" class="ctl-input" type="text">
+				<input id="t1" class="ctl-input" type="text">
+				<input id="t2" class="ctl-input" type="text">
+				<input id="t3" class="ctl-input" type="text">
+				<input id="t4" class="ctl-input" type="text">
+				<input id="t5" class="ctl-input" type="text">
 
 				<hr>
 				<label class="ctl-label">\(h\)</label>
 				<input id="h" class="ctl-input-lg" type="text">
 				<label class="ctl-label">\(T\)</label>
 				<input id="T" class="ctl-input-lg" type="text">
-				<input id="run" class="ctl-bt" type="button" value="run">
+				<input id="run" class="ctl-bt" type="button" value="run" data-start="0">
 			</div>
 		</div>
 	</div>
