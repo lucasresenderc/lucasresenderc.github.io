@@ -27,7 +27,7 @@ body{margin: 0px; font-family: 'Spectral', serif;}
 #center{
     margin: 0 auto 0 auto;
     width: 100%;
-    max-width: 880px;
+    max-width: 1000px;
 }
 
 .bs{
@@ -123,4 +123,11 @@ footer span{
     border: 1px solid #999;
     border-radius: 4px;
     padding: 1px 4px;
+}
+
+.menulink{
+    color: #333 !important;
+}
+.menulink:hover{
+    color: black !important;
 }
