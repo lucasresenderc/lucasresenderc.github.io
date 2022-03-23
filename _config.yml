@@ -10,7 +10,7 @@ locale                   : "pt-BR"
 title                    : "Lucas Resende"
 title_separator          : "-"
 name                     : &name "Lucas"
-description              : &description "PhD Candidate at IMPA"
+description              : &description "Ph.D. Candidate at IMPA"
 url                      : https://lucasresenderc.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "lucasresenderc/lucasresenderc.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Lucas Resende"
   avatar           : "profile.jpeg"
-  bio              : "PhD Candidate in Probability at IMPA. Interested in ML theory, Concentration theory and Optimization."
+  bio              : "Ph.D. Candidate in Probability at IMPA. Interested in ML theory, Concentration theory and Optimization."
   location         : "Rio de Janeiro - Brazil"
   employer         :
   pubmed           :  # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
