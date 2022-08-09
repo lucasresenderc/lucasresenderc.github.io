@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/2022-04-13-quantifying-protocols
 excerpt: 'This paper discuss efficient protocols to reopen schools, even under low vaccination.'
 date: 2022-04-14
-venue: 'arXiv'
+venue: 'PLOS ONE'
 paperurl: 'https://arxiv.org/abs/2204.07148'
 citation: 'Genari at al. (2022). &quot;Quantifying protocols for safe school activities.&quot; <i>arXiv</i>.'
 ---
