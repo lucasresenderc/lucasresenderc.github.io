@@ -11,16 +11,11 @@
     <title>Lucas Resende</title>
 
     <!-- Include favicon. Use, e.g., https://favicon.io/ -->
-    <link rel="icon" type="image/png" href="imgs/favicon.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="fav.png" sizes="32x32" />
 
     <!-- Include style sheets -->
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="styles.css" />
 
-    <!-- Fonts from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
-    
     <!-- Load FontAwesome (for icons) -->
     <link
       rel="stylesheet"
@@ -46,20 +41,17 @@
     </section> -->
     <section id="content">
       <!-- Avatar image -->
-      <img src="imgs/eu.jpeg" alt="Lucas Resende" class="avatar" />
+      <img src="eu.png" alt="Lucas Resende" class="avatar" />
 
       <!-- Text -->
-      <h1 style="margin-bottom: 0;">Lucas Resende</h1>
-      <small>Postdoc at ENSAE | Graph4Health project</small><br>
+      <h1>Lucas Resende</h1>
+      <small>CREST Research Affiliate</small><br>
       <small style="font-family: monospace"><i class="fas fa-envelope"></i> lucas.resende [at] ensae.fr</small>
 
-      <p>
-        I'm broadly interested in High Dimensional Probability and its<br>
-        applications to Mathematical Statistics and Machine Learning.<br>
-        Currently working on Robust Statistics.
-      </p>
-      <p>
-        Please feel free to get in touch!
+      <p class="main-description">
+            I'm interested in developing and applying statistical methods to problems from all fields. So long, I've worked in robust statistics,
+            network formation and causal machine learning, with primary applications in health.<br>
+            Please feel free to get in touch!
       </p>
 
       <!-- Icons -->
@@ -80,89 +72,89 @@
 
       <div class="sep-div"></div>
 
-      <h3>Research</h3>
+      <h2>Research <a href="teaching.html">Teaching</a></h2>
 
       <div class="research-entry">
-        <img src="imgs/trimmed_mean_1.png" class="old">
-        <img src="imgs/trimmed_mean_2.png" class="new">
-        <div>
-            <h4>Robust high-dimensional Gaussian and bootstrap approximations for trimmed sample means</h4>
-            <p>The literature on robust statistics focus on high probability concentration bounds. In this work I explore the high-dimensional Gaussian and bootstrap approximations properties of the trimmed mean. The key takeway is that it yields good approximations under heavy tails, while the empirical mean only support Gaussian approximations under light tails.</p>
-            <a target="_blank" href="https://arxiv.org/abs/2410.22085"><i class="fa-solid fa-link"></i> View in Arxiv</a>
-        </div>
-      </div>
-
-      <div class="research-entry">
-        <img src="imgs/trimmed_mean_1.png" class="old">
-        <img src="imgs/trimmed_mean_2.png" class="new">
-        <div>
-            <h4>Trimmed sample means for robust uniform mean estimation and regression</h4>
-            <p>An statistical method is robust when it performs well under weak assumptions on the data, such as allowing heavy-tailed distributions or even contaminated data. In this work we use the trimmed mean to obtain robust estimators for uniform mean and regression, obtaining optimal performance in terms of moments.</p>
-            <a target="_blank" href="https://arxiv.org/abs/2302.06710"><i class="fa-solid fa-link"></i> View in Arxiv</a> • <a target="_blank" href="pdfs/focm23_poster.pdf"><i class="fa-solid fa-person-chalkboard"></i> Poster</a>
-        </div>
-      </div>
-
-      <div class="research-entry">
-        <img src="imgs/hash_1.png" class="old">
-        <img src="imgs/hash_2.png" class="new">
-        <div>
-            <h4>Deep Hashing via Householder Quantization</h4>
-            <p>Most hashing aproaches based on Deep Learning rely on minimizing some similarity loss with a penalty term to force quantization. Observing that typical similarity losses are invariant by rotation we propose to split the learning process in two stages: first learn the similarity without penalization and then learn a rotation that provides good quantization error.</p>
-            <a target="_blank" href="https://arxiv.org/abs/2311.04207"><i class="fa-solid fa-link"></i> View in Arxiv</a>
-        </div>
-      </div>
-
-      <div class="research-entry">
-        <img src="imgs/de_1.png" class="old">
-        <img src="imgs/de_2.png" class="new">
-        <div>
-            <h4>Contributions to Dynamic Analysis of Differential Evolution Algorithms</h4>
-            <p>The Differential Evolution is an evolutionary optimization algorithm. In this work new insights are provided on the high-dimensional behavior of the algorithm, including the existence of fixed points and the justification of some well-known rules of thumb for hyper-parameter selection.</p>
-            <a target="_blank" href="https://direct.mit.edu/evco/article-abstract/31/3/201/113819/Contributions-to-Dynamic-Analysis-of-Differential?redirectedFrom=fulltext"><i class="fa-solid fa-link"></i> View in Evolutionary Computation</a>
+        <div class="research-entry-title">Robust<br>Statistics</div>
+        <div class="research-entry-description">
+            Robust statistics is about methods that remain reliable when data deviates from ideal assumptions
+            — for instance, when observations have heavy tails or contain outliers.
+            <ul>
+                <li>
+                    <strong>Trimmed Sample Means for Robust Uniform Mean Estimation and Regression</strong><br>
+                    <i>with Roberto Imbuzeiro, AoS, 2025</i><br>
+                    In this work we use the trimmed mean to obtain robust estimators for uniform mean and regression, obtaining optimal performance in terms of moments.<br>
+                    <a class="link-icon" target="_blank" href="https://projecteuclid.org/journals/annals-of-statistics/volume-53/issue-5/Trimmed-sample-means-for-robust-uniform-mean-estimation-and-regression/10.1214/25-AOS2536.short">[View on AoS]</a>
+                    <a class="link-icon" target="_blank" href="https://arxiv.org/abs/2302.06710">[View on arXiv]</a>
+                    <a class="link-icon" target="_blank" href="files/focm23_poster.pdf">[Poster]</a>
+                </li>
+                <li>
+                    <strong>Robust High-Dimensional Gaussian and Bootstrap Approximations for Trimmed Sample Means</strong><br>
+                    <i>solo paper, preprint, 2025</i><br>
+                    The literature on robust statistics focus on high probability concentration bounds. In this work I explore the high-dimensional Gaussian and bootstrap approximations properties of the trimmed mean. The key takeway is that it yields good approximations under heavy tails, while the empirical mean only support Gaussian approximations under light tails.<br>
+                    <a class="link-icon" target="_blank" href="https://arxiv.org/abs/2410.22085">[View on arXiv]</a>
+                    <a class="link-icon" target="_blank" href="files/fgv25_poster.pdf">[Poster]</a>
+                </li>
+                <li>
+                    <strong>Improved Concentration for Mean Estimators via Shrinkage</strong><br>
+                    <i>with Antônio Catão and Paulo Orenstein, working paper</i><br>
+                    We study a family of adaptive shrinkage-based methods for robust mean estimation that achieve strong statistical guarantees. This project investigates their theoretical properties and practical performance across a range of applications.<br>
+                </li>
+            </ul>
         </div>
       </div>
 
       <div class="research-entry">
-        <img src="imgs/epidemiology_1.png" class="old">
-        <img src="imgs/epidemiology_2.png" class="new">
-        <div>
-            <h4>Quantifying protocols for safe school activities</h4>
-            <p>This publication is part a multidisciplinary effort to understand the risks associated with reopening schools during the pandemic. Specifically, my work focuses on the reconstruction of unreported and missing data by utilizing ICU and death information, enabling the estimation, at any given time, of the number of individuals in each SEIR state.</p>
-            <a target="_blank" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0273425"><i class="fa-solid fa-link"></i> View in Plos One</a>
+        <div class="research-entry-title">Inference<br>at Scale</div>
+        <div class="research-entry-description">
+            Models with fixed effects often face the <em>incidental parameter problem</em> — biases that appear when the number
+            of nuisance parameters grows with the sample size. My research develops methods for valid and numerically stable
+            inference in such settings, extending classical econometric approaches.
+            <ul>
+            <li>
+                <strong>Unbiased Estimation of Multi-Way Gravity Models</strong><br>
+                <i>with Guillaume Lecué, Lionel Wilner, Philippe Choné, working paper</i><br>
+                This working paper develops a bias-free estimator for weighted networks with high-dimensional fixed effects, generalizing tetrad methods from binary to count data. By exploiting difference-in-differences structures in Poisson models, the approach removes incidental parameters, scales efficiently in sparse networks, and enables identification of both extensive and intensive margins in multi-way settings.<br>
+                <!-- <a class="link-icon" href="#">[View on arXiv]</a> -->
+            </li>
+            </ul>
         </div>
-      </div>
-<!--
-      <div class="research-entry">
-        <img src="imgs/geo_1.png" class="old">
-        <img src="imgs/geo_2.png" class="new">
-        <div>
-            <h4>Modeling Geospatial Uncertainty of Geometallurgical Variables with Bayesian Models and Hilbert–Kriging</h4>
-            <p>In mine planning, geospatial estimates of certain variables are crucial for minimizing energy consumption at the plant while maximizing mineral recovery. In this work, we present a Bayesian approach to estimate these quantities in terms of compositional data.</p>
-            <a target="_blank" href="https://link.springer.com/article/10.1007/s11004-022-10013-1"><i class="fa-solid fa-link"></i> View in Mathematical Geosciences</a>
+    </div>
+
+    <div class="research-entry">
+      <div class="research-entry-title">Applied<br>Machine Learning</div>
+        <div class="research-entry-description">
+            I collaborate across public health, economics, and industry to apply modern machine learning and statistical methods to real-world problems.
+            <ul>
+                <li>
+                    <strong>LLM-Based Health Policy Evaluation</strong><br>
+                    <i>Graph4Health project, ENSAE, ongoing</i><br>
+                    Train transformer models on medical event sequences to create patient embeddings for predicting health outcomes and conducting off-policy evaluation. Currently used to study France’s médecin traitant system.
+                    <br><a class="link-icon" target="_blank" href="https://arxiv.org/abs/2410.22085">[Graph4Health's page]</a>
+                </li>
+                <li>
+                    <strong>Epidemiological Modeling for COVID-19 School Reopening</strong><br>
+                    <i>with COMORBUSS team, 2021</i><br>
+                    Developed models to assess the effects of reopening strategies under varying vaccination and masking scenarios, informing public health decisions.
+                    <br><a class="link-icon" target="_blank" href="https://piaui.folha.uol.com.br/escola-aberta-risco-em-alta-matematica-da-covid/">[Outreach on Piauí Magazine]</a>
+                    <a class="link-icon" target="_blank" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0273425">[PLOS One paper]</a>
+                  </li>
+                <li>
+                    <strong>Deep Hashing via Householder Quantization</strong><br>
+                    <i>with Lucas Schwengber, Paulo Orenstein and Roberto Imbuzeiro</i><br>
+                    Motivated by large-scale similarity search in streaming platforms, this project led to a new deep-hashing quantization method that improves fast retrieval of similar items.
+                    <br><a class="link-icon" target="_blank" href="https://arxiv.org/abs/2311.04207">[View on arXiv]</a>
+                  </li>
+            </ul>
         </div>
-      </div>
--->
+  </div>
+
+
+
+
       <div class="sep-div"></div>
 
-      <h3>News</h3>
-
-      <ul id="news">
-        <li> <span> <i class="fa-regular fa-calendar"></i> September, 2024</span> Joined ENSAE as a postdoc researcher.</li>
-        <li> <span> <i class="fa-regular fa-calendar"></i> April, 2024</span> Successfully defended my thesis and started as a Lecturer at IMPA Tech.</li>
-        <li> <span> <i class="fa-regular fa-calendar"></i> October, 2023</span> The team I'm coaching at the ICPC won the gold medal at the 28th Brazilian finals.</li>
-        <li> <span> <i class="fa-regular fa-calendar"></i> June, 2023</span> I presented my poster on robust uniform mean and regression via trimmed sample means at <a target="_blank" href="https://focm2023.pages.math.cnrs.fr/">FoCM 2023</a>.</li>
-        <li> <span> <i class="fa-regular fa-calendar"></i> August, 2022</span> Invited talk at the <a target="_blank" href="https://sinape2022.eventize.com.br/">24th SINAPE</a>.</li>
-        <li> <span> <i class="fa-regular fa-calendar"></i> April, 2022</span> The team I'm coaching at the ICPC won the <a target="_blank" href="https://impa.br/noticias/alunos-do-impa-sao-premiados-em-maratona-de-programacao/">gold medal</a> at the 26th Brazilian finals.</li>
-        <li> <span> <i class="fa-regular fa-calendar"></i> June, 2020</span> My optimization package based on my work on the Differential Evolution algorithm was <a target="_blank" href="https://github.com/lucasresenderc/PyOptDE">released</a>.</li>
-
-      </ul>
-
-
-      <div class="sep-div"></div>
-
-      <div id="footnote">a <a target="_blank" href="https://www.youtube.com/watch?v=u5WwlCpnD8g">poem</a>, a <a target="_blank" href="https://www.goodreads.com/book/show/309295.A_Casa_dos_Budas_Ditosos?from_search=true&from_srp=true&qid=AcadUffkxe&rank=1">book</a>, a <a target="_blank" href="https://www.imdb.com/title/tt6390668/">movie</a> and a <a target="_blank" href="https://youtu.be/dd7aHs-yDiQ">song</a></div>
-
-
+      <div id="footnote"> "The best thing about being a statistician is that you get to play in everyone's backyard" (J. Tukey)</div>
 
     </section>
   </body>
