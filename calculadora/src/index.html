@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de IRR</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container-custom">
+      <div class="app-header-content">
+        <div class="app-header-icon">🐄</div>
+        <div class="app-header-text">
+          <h1 class="app-title">Rentabilidade de Gado</h1>
+          <p class="app-subtitle">Análise de Cenários Financeiros</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="container-custom">
+      <div class="content-wrapper">
+        <!-- Seção de Configurações -->
+        <section class="params-section">
+          <div class="card card-shadow">
+            <div class="card-body">
+              <h5 class="card-title">Configurações</h5>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group-custom">
+                    <label class="form-label-custom">TMA - Taxa Mínima (%)</label>
+                    <input type="number" class="form-control" id="riskFreeReturn" placeholder="Ex: 5" value="5" step="0.1">
+                    <small class="text-muted">Taxa de atratividade</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group-custom">
+                    <label class="form-label-custom">Preço Mín.</label>
+                    <input type="number" class="form-control" id="minBuyPrice" placeholder="Ex: 1400" value="1400" step="100">
+                    <small class="text-muted">Preço mínimo</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group-custom">
+                    <label class="form-label-custom">Preço Máx.</label>
+                    <input type="number" class="form-control" id="maxBuyPrice" placeholder="Ex: 3000" value="3000" step="100">
+                    <small class="text-muted">Preço máximo</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group-custom">
+                    <label class="form-label-custom">Intervalo</label>
+                    <select class="form-control" id="interval">
+                      <option value="100">100</option>
+                      <option value="200">200</option>
+                      <option value="300">300</option>
+                      <option value="500">500</option>
+                    </select>
+                    <small class="text-muted">Incremento</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Seção de Entrada -->
+        <section class="input-section">
+          <div class="card card-shadow">
+            <div class="card-body">
+              <h5 class="card-title">Adicionar Novo Cenário</h5>
+              <form id="scenarioForm">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group-custom">
+                      <label class="form-label-custom">Nome do Cenário</label>
+                      <input type="text" class="form-control" id="name" placeholder="Cenário Base" required>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group-custom">
+                      <label class="form-label-custom">Cabeças Compradas</label>
+                      <input type="number" class="form-control" id="units_buy" placeholder="100" required step="0.01" min="0">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group-custom">
+                      <label class="form-label-custom">Cabeças Vendidas</label>
+                      <input type="number" class="form-control" id="units_sell" placeholder="100" required step="0.01" min="0">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group-custom">
+                      <label class="form-label-custom">Preço Venda</label>
+                      <input type="number" class="form-control" id="sell_price" placeholder="5000" required step="0.01" min="0">
+                    </div>
+                  </div>
+                </div>
+
+                <div id="costsContainer">
+                  <h6 class="mt-4 mb-3"><strong>Custos Operacionais (por ano)</strong></h6>
+                  <div class="row" id="costsRow">
+                    <div class="col-md-2 cost-field">
+                      <div class="form-group-custom">
+                        <label class="form-label-custom">Anos na Fazenda</label>
+                        <select class="form-control" id="numYears" required>
+                          <option value="1">1 ano</option>
+                          <option value="2">2 anos</option>
+                          <option value="3" selected>3 anos</option>
+                          <option value="4">4 anos</option>
+                          <option value="5">5 anos</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-2 cost-field" id="costField1">
+                      <div class="form-group-custom">
+                        <label class="form-label-custom">Ano 1</label>
+                        <input type="number" class="form-control cost-input" id="cost_1" placeholder="1000" step="0.01">
+                        <small class="text-muted">Custo anual</small>
+                      </div>
+                    </div>
+                    <div class="col-md-2 cost-field" id="costField2" style="display:none;">
+                      <div class="form-group-custom">
+                        <label class="form-label-custom">Ano 2</label>
+                        <input type="number" class="form-control cost-input" id="cost_2" placeholder="1000" step="0.01">
+                        <small class="text-muted">Custo anual</small>
+                      </div>
+                    </div>
+                    <div class="col-md-2 cost-field" id="costField3" style="display:none;">
+                      <div class="form-group-custom">
+                        <label class="form-label-custom">Ano 3</label>
+                        <input type="number" class="form-control cost-input" id="cost_3" placeholder="1000" step="0.01">
+                        <small class="text-muted">Custo anual</small>
+                      </div>
+                    </div>
+                    <div class="col-md-2 cost-field" id="costField4" style="display:none;">
+                      <div class="form-group-custom">
+                        <label class="form-label-custom">Ano 4</label>
+                        <input type="number" class="form-control cost-input" id="cost_4" placeholder="1000" step="0.01">
+                        <small class="text-muted">Custo anual</small>
+                      </div>
+                    </div>
+                    <div class="col-md-2 cost-field" id="costField5" style="display:none;">
+                      <div class="form-group-custom">
+                        <label class="form-label-custom">Ano 5</label>
+                        <input type="number" class="form-control cost-input" id="cost_5" placeholder="1000" step="0.01">
+                        <small class="text-muted">Custo anual</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100" id="submitBtn">Adicionar Cenário</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Seção de Resultados -->
+        <section class="results-section">
+          <div class="card card-shadow">
+            <div class="card-body">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h5 class="card-title" style="margin-bottom: 0;">Análise de Cenários</h5>
+                <div class="toggle-switch">
+                  <span class="toggle-text" id="toggleText">Mostrar Lucro Líquido</span>
+                  <label class="switch">
+                    <input type="checkbox" id="displayToggle">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div id="emptyState">
+                <h4 style="color: #6b7280; margin: 40px 0 10px 0;">📊 Nenhum cenário adicionado</h4>
+                <p style="color: #9ca3af;">Preencha o formulário acima e clique em "Adicionar Cenário" para ver a análise</p>
+              </div>
+
+              <div id="tableContainer" style="display:none;">
+                  <table id="resultsTable">
+                    <thead>
+                      <tr id="headerRow">
+                        <th>Preço de Compra</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container-custom">
+      <p>&copy; 2025 Calculadora de IRR. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Initialize cost fields visibility on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const calculator = calc;
+      calculator.updateCostFields();
+    });
+  </script>
+</body>
+</html>
