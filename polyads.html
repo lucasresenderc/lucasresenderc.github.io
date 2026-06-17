@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Inference in Large Multi-way Networks | Lucas Resende</title>
+
+    <link rel="icon" type="image/png" href="fav.png" sizes="32x32">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.2/css/academicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/stackoverflow-dark.min.css">
+
+    <style>
+        :root {
+            --primary-color: #7f1d1d;
+            --primary-dark: #450a0a;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --card-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --max-width: 850px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+            padding: 3rem 1.5rem;
+        }
+
+        .container { max-width: var(--max-width); margin: 0 auto; }
+
+        .page-header {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--primary-color); }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-meta {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .page-meta strong { color: var(--text-dark); font-weight: 600; }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            padding: 1rem 0;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--primary-color); }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 5rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        p { margin-bottom: 1.25rem; text-align: justify; }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover { color: var(--primary-dark); }
+
+        .inline-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background-color: #ffffff;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .summary-card {
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .workflow-card {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.25rem;
+            background-color: #ffffff;
+        }
+
+        .workflow-card h4 {
+            font-size: 0.95rem;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .workflow-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .complexity-note {
+            padding: 1.25rem 1.5rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .complexity-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .video-placeholder i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            opacity: 0.6;
+        }
+
+        .video-placeholder span {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .video-caption {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        pre {
+            margin-bottom: 1.25rem;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        pre code.hljs {
+            display: block;
+            padding: 1.25rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            border-radius: 6px;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        }
+
+        p code, li code {
+            background-color: var(--card-bg);
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.88em;
+            color: var(--primary-dark);
+        }
+
+        ul.doc-list {
+            list-style-type: none;
+            margin-bottom: 1.25rem;
+        }
+
+        ul.doc-list li {
+            margin-bottom: 0.6rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        ul.doc-list li::before {
+            content: "▪";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 0.85rem;
+            top: -1px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.65rem 0.85rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--card-bg);
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .citation-block {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.25rem;
+            font-size: 0.85rem;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .footnote-quote {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-light);
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 650px) {
+            body { padding: 1.5rem 1rem; }
+            .page-header h1 { font-size: 1.6rem; }
+            nav { justify-content: center; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <a href="index.html#research" class="back-link"><i class="fas fa-arrow-left"></i> Back to Research</a>
+        <h1>Statistical Inference in Large Multi-way Networks</h1>
+        <div class="page-meta">
+            <strong>Lucas Resende</strong>, Guillaume Lecué, Lionel Wilner, and Philippe Choné
+        </div>
+        <div class="inline-links">
+            <a href="https://arxiv.org/abs/2512.02203" target="_blank" class="btn"><i class="ai ai-arxiv"></i> Paper on arXiv</a>
+            <a href="https://github.com/lucasresenderc/polyads" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub Repository</a>
+            <a href="https://pypi.org/project/polyads" target="_blank" class="btn"><i class="fab fa-python"></i> PyPI Package</a>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#paper">Paper</a>
+        <a href="#paper-video">Paper Talk</a>
+        <a href="#package-video">Package Demo</a>
+        <a href="#documentation">Documentation</a>
+    </nav>
+
+    <!-- Paper -->
+    <section id="paper">
+        <h2>Paper</h2>
+        <div class="summary-card">
+            <p>We propose a new method to estimate structural parameters in multi-way networks while controlling for rich structures of fixed effects. The method is based on a series of classification tasks and is agnostic to both the number and structure of fixed effects. In contrast to full maximum likelihood approaches, our estimator does not suffer from the incidental parameter problem. For sparsely connected networks, it is also computationally faster than PPML. We provide empirical evidence that our estimator yields more reliable confidence intervals than PPML and its bias-correction strategies. These improvements hold even under model misspecification and are more pronounced in sparse settings. While PPML remains competitive in dense, low-dimensional data, our approach offers a robust alternative for multi-way models that scales efficiently with sparsity. The method is applied to study the causal effect of a policy reform on spatial accessibility to health care in France.
+            </p>
+        </div>
+        <div class="inline-links">
+            <a href="https://arxiv.org/abs/2512.02203" target="_blank" class="btn"><i class="ai ai-arxiv"></i> Read on arXiv</a>
+            <a href="https://arxiv.org/pdf/2512.02203" target="_blank" class="btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+        </div>
+    </section>
+
+    <!-- Paper Video -->
+    <section id="paper-video">
+        <h2>Paper Presentation</h2>
+        <p>A short overview of the method.</p>
+        <div class="video-wrapper" id="paper-video-embed">
+            <div class="video-placeholder">
+                <i class="fab fa-youtube"></i>
+                <span>Video coming soon</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Video -->
+    <section id="package-video">
+        <h2>Python Package Demo</h2>
+        <p>
+            A demonstration of the Python package.
+        </p>
+        <div class="video-wrapper" id="package-video-embed">
+            <div class="video-placeholder">
+                <i class="fab fa-youtube"></i>
+                <span>Video coming soon</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation -->
+    <section id="documentation">
+        <h2>Package Documentation</h2>
+        <p>
+            <strong>polyads</strong> estimates multi-way gravity models with arbitrary fixed-effect structures (two-way, three-way, four-way, and beyond). It is designed for count data on sparse networks where standard PPML breaks down.
+        </p>
+
+        <h3>Installation</h3>
+        <pre><code class="language-bash">pip install polyads</code></pre>
+        <p>Or install the latest development version from GitHub:</p>
+        <pre><code class="language-bash">pip install git+https://github.com/lucasresenderc/polyads.git</code></pre>
+
+        <h3>Two Workflows</h3>
+        <p>
+            Estimation always requires a sparse <code>DataFrame</code> of indices and counts. The main design choice is how covariates are supplied:
+        </p>
+        <div class="workflow-grid">
+            <div class="workflow-card">
+                <h4>1. Features in memory</h4>
+                <p>
+                    Use when the full feature array <code>X</code> fits in RAM. Pass a dense <code>D</code>-dimensional array of shape <code>(n₁, n₂, …, p)</code> to <code>fit(..., X=X)</code>. This is the simplest path for moderate problem sizes.
+                </p>
+            </div>
+            <div class="workflow-card">
+                <h4>2. Features on the fly</h4>
+                <p>
+                    Use when <code>X</code> is too large to fit in memory or even compute. Pass a callback <code>eval_X</code> that maps an index tuple to its feature vector; features are computed only when needed.
+                </p>
+            </div>
+        </div>
+        <p>
+            In both cases, <code>df</code> lists the cells entering the likelihood (index columns plus a count column). You never need to store the full <code>D</code>-way tensor of outcomes in memory.
+        </p>
+
+        <h3>Case 1 — Features in Memory</h3>
+        <pre><code class="language-python">import numpy as np
+import pandas as pd
+from polyads.model import PolyadEstimator
+from polyads.data import generate_data
+
+# Synthetic three-way gravity data
+beta_true = np.array([1.0, -0.5])
+df, X = generate_data(
+    seed=1,
+    n_ds=(100, 100, 100),
+    c=-5,
+    shape=np.inf,
+    beta=beta_true,
+    groups=[[0, 1], [0, 2], [1, 2]],
+)
+
+columns = df.columns.tolist()
+estimator = PolyadEstimator(use_tqdm=True)
+estimator.fit(
+    df=df,
+    indices=columns[:-1],
+    values=columns[-1],
+    beta_init=np.zeros(2),
+    X=X,
+)
+
+estimator.summary()</code></pre>
+
+        <h3>Case 2 — Features via <code>eval_X</code></h3>
+        <p>
+            For sparse networks for which covariates do not fit in memory (or would require too much time to compute), provide a function that returns the covariates for any index encountered during estimation:
+        </p>
+        <pre><code class="language-python">def compute_features(indices):
+    i, j, t = indices
+    return np.array([
+        np.log(distance[i, j]),
+        fta_indicator[i, j, t],
+        border[i, j],
+    ])
+
+estimator.fit(
+    df=df,
+    indices=['i', 'j', 't'],
+    values='y',
+    beta_init=np.zeros(3),
+    eval_X=compute_features,  # pass eval_X instead of X
+)</code></pre>
+        <p>
+            Use <code>X</code> or <code>eval_X</code>, not both. The callback must be pure and fast enough to be called many times.
+        </p>
+
+        <h3>Examples by Dimension</h3>
+        <h4 style="font-size: 0.95rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--text-dark);">Two-way (trade)</h4>
+        <pre><code class="language-python"># Bilateral trade: log λ_ij = β'X_ij + u_i + v_j
+estimator.fit(
+    df=df,
+    indices=['exporter', 'importer'],
+    values='flow',
+    beta_init=np.zeros(p),
+    X=features,
+)</code></pre>
+
+        <h4 style="font-size: 0.95rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--text-dark);">Three-way (panel)</h4>
+        <pre><code class="language-python"># Trade panel: log λ_ijt = β'X_ijt + u_ij + v_it + w_jt
+estimator.fit(
+    df=df,
+    indices=['exporter', 'importer', 'year'],
+    values='flow',
+    beta_init=np.zeros(p),
+    X=features,
+)</code></pre>
+
+        <h3>Data Format</h3>
+        <p>
+            <code>df</code> is a long-format table: one row per cell in the support (non-negative edges), with index columns and a count column (non-negative integers). Zeros may appear among the stored rows; the full <code>N</code>-sized tensor need not be constructed.
+        </p>
+        <pre><code class="language-python">df = pd.DataFrame({
+    'i1': [0, 0, 1, ...],
+    'i2': [0, 1, 0, ...],
+    'y':  [5, 0, 3, ...],
+})</code></pre>
+        <p>
+            <strong>Case 1:</strong> <code>X</code> has shape <code>(n₁, n₂, …, p)</code> (e.g., <code>(n₁, n₂, n₃, p)</code> for three-way models).<br>
+            <strong>Case 2:</strong> omit <code>X</code> and supply <code>eval_X(indices) → ℝ^p</code> instead.
+        </p>
+
+        <h3>Polyads vs. PPML</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Complexity</th>
+                    <th>Best for</th>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Polyads</strong></td>
+                    <td>O(|E|²)</td>
+                    <td>D ≥ 3, sparse networks</td>
+                    <td>Valid inference; Faster for sparse networks</td>
+                    <td>Quadratic in |E|; costly when dense</td>
+                </tr>
+                <tr>
+                    <td><strong>PPML</strong></td>
+                    <td>O(N)</td>
+                    <td>D = 2, dense panels</td>
+                    <td>Linear runtime for dense networks</td>
+                    <td>Biased CIs for D ≥ 3; requires all edges (incl. zeros)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Citation</h3>
+        <div class="citation-block">@misc{resende2025polyads,
+      title={Statistical Inference in Large Multi-way Networks},
+      author={Lucas Resende and Guillaume Lecué and Lionel Wilner and Philippe Choné},
+      year={2025},
+      eprint={2512.02203},
+      archivePrefix={arXiv},
+      primaryClass={econ.EM},
+      url={https://arxiv.org/abs/2512.02203},
+}</div>
+
+        <div class="inline-links" style="margin-top: 1.5rem;">
+            <a href="https://github.com/lucasresenderc/polyads" target="_blank" class="btn"><i class="fab fa-github"></i> Full README on GitHub</a>
+            <a href="https://pypi.org/project/polyads" target="_blank" class="btn"><i class="fab fa-python"></i> Install from PyPI</a>
+        </div>
+    </section>
+
+    <div class="footnote-quote">
+        <a href="index.html">← Back to homepage</a>
+    </div>
+
+</div>
+
+<script>
+    // Replace with your YouTube video IDs once uploaded (e.g. 'dQw4w9WgXcQ')
+    const VIDEOS = {
+        paper: 'Fjraee9ZT7w',
+        package: 'ZveK-qjhMSs',
+    };
+
+    function embedVideo(containerId, videoId) {
+        if (!videoId) return;
+        const container = document.getElementById(containerId);
+        container.innerHTML =
+            '<iframe src="https://www.youtube.com/embed/' + videoId + '" ' +
+            'title="YouTube video" allow="accelerometer; autoplay; clipboard-write; ' +
+            'encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    }
+
+    embedVideo('paper-video-embed', VIDEOS.paper);
+    embedVideo('package-video-embed', VIDEOS.package);
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+</body>
+</html>

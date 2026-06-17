@@ -1,172 +1,693 @@
 <!DOCTYPE html>
-
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Resende | Statistician & Researcher</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="fav.png" sizes="32x32">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Icon Fonts: FontAwesome & Academicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.2/css/academicons.min.css">
 
-    <!-- Define title -->
-    <title>Lucas Resende</title>
+    <style>
+        :root {
+            --primary-color: #7f1d1d;   /* Deep Institutional Burgundy / Red */
+            --primary-dark: #450a0a;    /* Darker Maroon */
+            --text-dark: #1e293b;       /* Slate 800 */
+            --text-light: #64748b;      /* Slate 500 */
+            --bg-light: #fef2f2;        /* Very soft red-tinted background tint */
+            --card-bg: #f8fafc;         /* Neutral light gray card background */
+            --border-color: #e2e8f0;    /* Slate 200 */
+            --max-width: 850px;
+        }
 
-    <!-- Include favicon. Use, e.g., https://favicon.io/ -->
-    <link rel="icon" type="image/png" href="fav.png" sizes="32x32" />
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <!-- Include style sheets -->
-    <link rel="stylesheet" href="styles.css" />
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+            padding: 3rem 1.5rem;
+        }
 
-    <!-- Load FontAwesome (for icons) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-    />
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
 
-    <!-- Load Academicons (for more icons) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.2/css/academicons.min.css"
-      integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg=="
-      crossorigin="anonymous"
-    />
-  </head>
+        /* Profile & Header Block */
+        header {
+            display: flex;
+            align-items: flex-start;
+            gap: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-  <body>
-    <!-- <section id="menu">
-      <a>About me</a> • 
-      <a>Research</a> • 
-      <a>News</a>
-    </section> -->
-    <section id="content">
-      <!-- Avatar image -->
-      <img src="eu.png" alt="Lucas Resende" class="avatar" />
+        .header-text {
+            flex: 1;
+            min-width: 0;
+        }
 
-      <!-- Text -->
-      <h1>Lucas Resende</h1>
-      <small>CREST Research Affiliate</small><br>
-      <small style="font-family: monospace"><i class="fas fa-envelope"></i> lucas.resende [at] ensae.fr</small>
+        .header-bio {
+            font-size: 0.98rem;
+            color: var(--text-light);
+            line-height: 1.65;
+            margin-top: 1rem;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-      <p class="main-description">
-            I'm interested in developing and applying statistical methods to problems from all fields. So long, I've worked in robust statistics,
-            network formation and causal machine learning, with primary applications in health.<br>
-            Please feel free to get in touch!
-      </p>
+        .avatar {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: none;
+            flex-shrink: 0;
+        }
 
-      <!-- Icons -->
-      <ul class="icons">
-        <li>
-          <a target="_blank" href="mailto:lucas.resende@ensae.fr" title="E-Mail"><i class="fas fa-envelope"></i></a>
-        </li>
-        <li>
-          <a target="_blank" href="https://github.com/lucasresenderc" title="GitHub"><i class="fab fa-github"></i></a>
-        </li>
-        <li>
-          <a target="_blank" href="https://www.linkedin.com/in/lucas-resende-matcomp/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </li>
-        <li>
-          <a target="_blank" href="https://scholar.google.com/citations?user=WNjynOoAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-        </li>
-      </ul>
+        .header-text h1 {
+            font-size: 2.75rem;
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
 
-      <div class="sep-div"></div>
+        .affiliation {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
 
-      <h2>Research <a href="teaching.html">Teaching</a></h2>
+        /* Social Icons Row */
+        .social-icons {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+            margin-top: 1.25rem;
+        }
 
-      <div class="research-entry">
-        <div class="research-entry-title">Robust<br>Statistics</div>
-        <div class="research-entry-description">
-            Robust statistics is about methods that remain reliable when data deviates from ideal assumptions
-            — for instance, when observations have heavy tails or contain outliers.
-            <ul>
-                <li>
-                    <strong>Trimmed Sample Means for Robust Uniform Mean Estimation and Regression</strong><br>
-                    <i>with Roberto Imbuzeiro, AoS, 2025</i><br>
-                    In this work we use the trimmed mean to obtain robust estimators for uniform mean and regression, obtaining optimal performance in terms of moments.<br>
-                    <a class="link-icon" target="_blank" href="https://projecteuclid.org/journals/annals-of-statistics/volume-53/issue-5/Trimmed-sample-means-for-robust-uniform-mean-estimation-and-regression/10.1214/25-AOS2536.short">[View on AoS]</a>
-                    <a class="link-icon" target="_blank" href="https://arxiv.org/abs/2302.06710">[View on arXiv]</a>
-                    <a class="link-icon" target="_blank" href="files/focm23_poster.pdf">[Poster]</a>
-                </li>
-                <li>
-                    <strong>Robust High-Dimensional Gaussian and Bootstrap Approximations for Trimmed Sample Means</strong><br>
-                    <i>solo paper, preprint, 2025</i><br>
-                    The literature on robust statistics focus on high probability concentration bounds. In this work I explore the high-dimensional Gaussian and bootstrap approximations properties of the trimmed mean. The key takeway is that it yields good approximations under heavy tails, while the empirical mean only support Gaussian approximations under light tails.<br>
-                    <a class="link-icon" target="_blank" href="https://arxiv.org/abs/2410.22085">[View on arXiv]</a>
-                    <a class="link-icon" target="_blank" href="files/fgv25_poster.pdf">[Poster]</a>
-                </li>
-                <li>
-                    <strong>Improved Concentration for Mean Estimators via Shrinkage</strong><br>
-                    <i>with Antônio Catão and Paulo Orenstein, 2025</i><br>
-                    We study a family of adaptive shrinkage-based methods for robust mean estimation that achieve strong statistical guarantees. This project investigates their theoretical properties and practical performance across a range of applications.<br>
-                    <a class="link-icon" target="_blank" href="https://arxiv.org/abs/2512.12750">[View on arXiv]</a>
-                </li>
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.4rem;
+            transition: color 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            padding: 1rem 0;
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            display: flex;
+            gap: 1.75rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Section Settings */
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 5rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin: 2.25rem 0 1.25rem 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            text-align: justify;
+        }
+
+        /* CV Blocks */
+        .timeline-block {
+            margin-bottom: 1.5rem;
+        }
+
+        .row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.35rem;
+            gap: 1rem;
+        }
+
+        .item-main-title {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .date-label {
+            font-variant-numeric: tabular-nums;
+            color: var(--text-light);
+            font-weight: 600;
+            min-width: 90px;
+            text-align: right;
+        }
+
+        .item-sub-details {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Research Items Layout */
+        .pub-card {
+            padding: 1.25rem;
+            background-color: var(--card-bg);
+            border-left: 3px solid var(--primary-color);
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1.25rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pub-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .pub-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .pub-authors {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin: 0.25rem 0;
+        }
+
+        .pub-journal {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-journal + .inline-links {
+            margin-top: 0.5rem;
+        }
+
+        /* Industry Logo Carousel */
+        .logo-carousel {
+            overflow: hidden;
+            margin-top: 1.5rem;
+            padding: 1.5rem 0;
+            mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+        }
+
+        .logo-track {
+            display: flex;
+            align-items: center;
+            gap: 3.5rem;
+            width: max-content;
+            animation: logo-scroll 40s linear infinite;
+        }
+
+        .logo-carousel:hover .logo-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes logo-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .logo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.65rem;
+            min-width: 140px;
+            flex-shrink: 0;
+        }
+
+        .logo-item img {
+            height: 48px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .logo-item:hover img {
+            opacity: 1;
+        }
+
+        .logo-item span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-align: center;
+            line-height: 1.3;
+            max-width: 140px;
+        }
+
+        .logo-item .logo-sub {
+            font-weight: 500;
+            font-size: 0.72rem;
+        }
+
+        /* Context Links/Buttons */
+        .inline-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.25rem 0.65rem;
+            background-color: #ffffff;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Bulleted Lists */
+        ul.custom-bullet-list {
+            list-style-type: none;
+        }
+
+        ul.custom-bullet-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        ul.custom-bullet-list li::before {
+            content: "▪";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 0.85rem;
+            top: -1px;
+        }
+
+        /* Sticky Footer Quote */
+        .footnote-quote {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-light);
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 5rem;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 650px) {
+            header { flex-direction: column; align-items: center; text-align: center; gap: 1.25rem; }
+            .header-text h1 { font-size: 2.25rem; }
+            .header-bio { text-align: center; }
+            .social-icons { justify-content: center; }
+            body { padding: 1.5rem 1rem; }
+            .row-item { flex-direction: column; gap: 0.1rem; }
+            .date-label { text-align: left; min-width: auto; }
+            nav { justify-content: center; gap: 1rem; }
+            .logo-item { min-width: 110px; }
+            .logo-item img { height: 40px; max-width: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Block -->
+    <header>
+        <img src="eu.png" alt="Lucas Resende" class="avatar">
+        
+        <div class="header-text">
+            <h1>Lucas Resende</h1>
+            <div class="affiliation">CREST Research Affiliate</div>
+            <p class="header-bio">
+                I'm interested in developing and applying statistical methods to problems from all fields. So far, I've worked in robust statistics, network formation, and causal machine learning, with primary applications in health. Please feel free to get in touch!
+            </p>
+            <ul class="social-icons">
+                <li><a href="mailto:lucas.resende@ensae.fr" title="Email"><i class="fas fa-envelope"></i></a></li>
+                <li><a href="https://github.com/lucasresenderc" target="_blank" title="GitHub"><i class="fab fa-github"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/lucas-resende-matcomp/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://scholar.google.com/citations?user=WNjynOoAAAAJ" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar"></i></a></li>
             </ul>
         </div>
-      </div>
+    </header>
 
-      <div class="research-entry">
-        <div class="research-entry-title">Inference<br>at Scale</div>
-        <div class="research-entry-description">
-            Models with fixed effects often face the <em>incidental parameter problem</em> — biases that appear when the number
-            of nuisance parameters grows with the sample size. My research develops methods for valid and numerically stable
-            inference in such settings, extending classical econometric approaches.
-            <ul>
-            <li>
-                <strong>Statistical Inference in Large Multi-way Networks</strong><br>
-                <i>with Guillaume Lecué, Lionel Wilner, Philippe Choné, 2025</i><br>
-                We propose a scalable estimator for weighted networks that eliminates the incidental parameter problem. By generalizing tetrad methods to count data via Poisson models, our approach efficiently identifies both extensive and intensive margins in multi-way settings.<br>
-                <a class="link-icon" target="_blank" href="https://arxiv.org/abs/2512.02203">[View on arXiv]</a>
-                <a class="link-icon" target="_blank" href="https://github.com/lucasresenderc/polyads">[Github]</a>
-                <a class="link-icon" target="_blank" href="https://pypi.org/project/polyads">[Python Package]</a>
-            </li>
+    <!-- Navigation Header Bar -->
+    <nav>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#industry">Industry & Applied</a>
+        <a href="#teaching">Teaching & Service</a>
+    </nav>
 
-            <li>
-                <strong>Bootstrap Inference for Fixed Effects in Network Formation</strong><br>
-                <i>with Guillaume Lecué, Philippe Choné, ongoing</i><br>
-                While the standard network formation literature typically treats node-specific fixed effects as nuisance parameters to be bypassed or differenced out, this project develops a bootstrap-based approach to directly estimate and conduct valid inference on them. This semi-parametric method allows researchers to recover and analyze individual heterogeneity that is otherwise lost in traditional incidental parameter solutions.<br>
-            </li>
-
-            </ul>
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">Instituto de Matemática Pura e Aplicada (IMPA)</span>
+                <span class="date-label">2020 — 2024</span>
+            </div>
+            <div class="item-sub-details">PhD in Mathematics &bull; Advisor: <a href="https://robertoimbuzeirooliveira.weebly.com" target="_blank">Roberto Imbuzeiro Oliveira</a> &bull; Rio de Janeiro, Brazil</div>
         </div>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">Universidade Federal de Minas Gerais (UFMG)</span>
+                <span class="date-label">2018 — 2020</span>
+            </div>
+            <div class="item-sub-details">MSc in Mathematics &bull; Advisor: Ricardo Takahashi &bull; Belo Horizonte, Brazil</div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">Universidade Federal de Minas Gerais (UFMG)</span>
+                <span class="date-label">2015 — 2018</span>
+            </div>
+            <div class="item-sub-details">BS in Computational Mathematics &bull; Belo Horizonte, Brazil</div>
+        </div>
+    </section>
+
+    <!-- Research Portfolio Section -->
+    <section id="research">
+        <h2>Research </h2>
+
+        <h3>Causal Inference & Applied ML</h3>
+
+        <div class="pub-card">
+            <div class="pub-title">Evaluating primary care gatekeeping policy via foundation models</div>
+            <div class="pub-authors">with Meilame Tayebjee, Guillaume Lecué, and Philippe Choné</div>
+            <div class="pub-journal">Working Paper</div>
+            <div class="inline-links">
+                <a href="https://guillaume-lecue.faculty.essec.edu/graph4health" target="_blank" class="btn"><i class="fas fa-globe"></i> Graph4Health Page</a>
+            </div>
+        </div>
+
+        <div class="pub-card">
+            <div class="pub-title">Quantifying protocols for safe school activities (Epidemiological Modeling for COVID-19)</div>
+            <div class="pub-authors">with Genari et al. (COMORBUSS Team)</div>
+            <div class="pub-journal">PLOS One, 2022</div>
+            <div class="inline-links">
+                <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0273425" target="_blank" class="btn"><i class="fas fa-file-alt"></i> PLOS One Paper</a>
+                <a href="https://abrasco.org.br/vacinacao-nao-e-suficiente-para-volta-as-aulas-estudo-indica-importancia-de-monitoramento-nas-escolas/" target="_blank" class="btn"><i class="fas fa-scroll"></i> Technical Note</a>
+                <a href="https://piaui.folha.uol.com.br/escola-aberta-risco-em-alta-matematica-da-covid/" target="_blank" class="btn"><i class="fas fa-newspaper"></i> Piauí Magazine Outreach</a>
+            </div>
+        </div>
+
+        <div class="pub-card">
+            <div class="pub-title">Deep hashing via householder quantization</div>
+            <div class="pub-authors">with Schwengber et al.</div>
+            <div class="inline-links">
+                <a href="https://arxiv.org/abs/2311.04207" target="_blank" class="btn"><i class="ai ai-arxiv"></i> View on arXiv</a>
+            </div>
+        </div>
+
+        <h3>Inference at Scale</h3>
+
+        <div class="pub-card">
+            <div class="pub-title">Statistical Inference in Large Multi-way Networks</div>
+            <div class="pub-authors">with Guillaume Lecué, Lionel Wilner, and Philippe Choné</div>
+            <div class="pub-journal">Incoming Talk at IAAE 2026</div>
+            <div class="inline-links">
+                <a href="polyads.html" class="btn"><i class="fas fa-globe"></i> Project Page</a>
+                <a href="https://arxiv.org/abs/2512.02203" target="_blank" class="btn"><i class="ai ai-arxiv"></i> View on arXiv</a>
+                <a href="https://github.com/lucasresenderc/polyads" target="_blank" class="btn"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://pypi.org/project/polyads" target="_blank" class="btn"><i class="fab fa-python"></i> Python Package</a>
+            </div>
+        </div>
+
+        <div class="pub-card">
+            <div class="pub-title">Bootstrap Inference for Fixed Effects in Network Formation</div>
+            <div class="pub-authors">with Guillaume Lecué, Lionel Wilner, and Philippe Choné</div>
+            <div class="pub-journal">Working Paper</div>
+        </div>
+
+        <h3>Robust Statistics</h3>
+        
+        <div class="pub-card">
+            <div class="pub-title">Trimmed sample means for robust uniform mean estimation and regression</div>
+            <div class="pub-authors">with Roberto Imbuzeiro Oliveira</div>
+            <div class="pub-journal">Annals of Statistics (AoS), 2025</div>
+            <div class="inline-links">
+                <a href="https://projecteuclid.org/journals/annals-of-statistics/volume-53/issue-5/Trimmed-sample-means-for-robust-uniform-mean-estimation-and-regression/10.1214/25-AOS2536.short" target="_blank" class="btn"><i class="fas fa-bookmark"></i> View on AoS</a>
+                <a href="https://arxiv.org/abs/2302.06710" target="_blank" class="btn"><i class="ai ai-arxiv"></i> View on arXiv</a>
+                <a href="files/focm23_poster.pdf" target="_blank" class="btn"><i class="fas fa-image"></i> Poster</a>
+            </div>
+        </div>
+
+        <div class="pub-card">
+            <div class="pub-title">Robust high dimensional Gaussian and bootstrap approximations for trimmed sample means</div>
+            <div class="pub-authors">Solo Preprint</div>
+            <div class="inline-links">
+                <a href="https://arxiv.org/abs/2410.22085" target="_blank" class="btn"><i class="ai ai-arxiv"></i> View on arXiv</a>
+                <a href="files/fgv25_poster.pdf" target="_blank" class="btn"><i class="fas fa-image"></i> Poster</a>
+            </div>
+        </div>
+
+        <div class="pub-card">
+            <div class="pub-title">Improved concentration for mean estimators via shrinkage</div>
+            <div class="pub-authors">with Antônio Catão and Paulo Orenstein</div>
+            <div class="inline-links">
+                <a href="https://arxiv.org/abs/2512.12750" target="_blank" class="btn"><i class="ai ai-arxiv"></i> View on arXiv</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Section -->
+    <section id="industry">
+        <h2>Applied Research & Industry Partnerships</h2>
+        <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 1.5rem;">
+            I have worked in projects with industry partners to develop practical solutions to real-world problems. I worked in projects for the following companies:
+        </p>
+
+        <div class="logo-carousel" aria-label="Industry partners">
+            <div class="logo-track">
+                <div class="logo-item">
+                    <img src="logos/semantik.png" alt="Semantik Match" loading="lazy">
+                    <span>SemantikMatch</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/BPCE.jpg" alt="BPCE" loading="lazy">
+                    <span>BPCE</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/Globoplay_2018.png" alt="Rede Globo" loading="lazy">
+                    <span>Globoplay</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/vale.png" alt="Vale" loading="lazy">
+                    <span>Vale</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/bhairport.jpg" alt="BH International Airport" loading="lazy">
+                    <span>BH Airport</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/sao-joao-alimentos.png" alt="Empório São João" loading="lazy">
+                    <span>São João Alimentos</span>
+                </div>
+                <!-- duplicate set for seamless loop -->
+                <div class="logo-item">
+                    <img src="logos/semantik.png" alt="" loading="lazy">
+                    <span>SemantikMatch</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/BPCE.jpg" alt="" loading="lazy">
+                    <span>BPCE</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/Globoplay_2018.png" alt="" loading="lazy">
+                    <span>Globoplay</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/vale.png" alt="" loading="lazy">
+                    <span>Vale</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/bhairport.jpg" alt="" loading="lazy">
+                    <span>BH Airport</span>
+                </div>
+                <div class="logo-item">
+                    <img src="logos/sao-joao-alimentos.png" alt="" loading="lazy">
+                    <span>São João Alimentos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching and Academic Service Section -->
+    <section id="teaching">
+        <h2>Teaching, Mentoring & Service</h2>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">École Polytechnique</span>
+                <span class="date-label">2025</span>
+            </div>
+            <div class="item-sub-details" style="margin-bottom: 0.5rem;">Lecturer &bull; Introduction to Machine Learning</div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">ENSAE Paris</span>
+                <span class="date-label">2025</span>
+            </div>
+            <div class="item-sub-details" style="margin-bottom: 0.5rem;">Teaching Assistant &bull; Theoretical Foundations of ML &bull; Advanced Machine Learning</div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">IMPA Tech</span>
+                <span class="date-label">2024</span>
+            </div>
+            <div class="item-sub-details" style="margin-bottom: 0.5rem;">
+                Lecturer &bull; Linear Algebra (Lecture notes in Portuguese; exercises emphasize rigorous foundations).
+                <div class="inline-links">
+                    <a href="files/notas_al.pdf" target="_blank" class="btn"><i class="fas fa-file-pdf"></i> Download Lecture Notes (PDF)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">FGV EMAp</span>
+                <span class="date-label">2020, 2022</span>
+            </div>
+            <div class="item-sub-details" style="margin-bottom: 0.5rem;">Teaching Assistant &bull; Measure and Integration (2022) &bull; Advanced Probability (2020)</div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">IMPA</span>
+                <span class="date-label">2021 — 2023</span>
+            </div>
+            <div class="item-sub-details" style="margin-bottom: 1.5rem;">Teaching Assistant &bull; Introduction to Probability, Computer Programming, ODEs, Optimization</div>
+        </div>
+
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">UFMG</span>
+                <span class="date-label">2019</span>
+            </div>
+            <div class="item-sub-details" style="margin-bottom: 1.5rem;">Teaching Assistant &bull; Real Analysis</div>
+        </div>
+
+        <h3>Selected Distinctions & Invited Talks</h3>
+        <ul class="custom-bullet-list">
+            <li><strong>Oral Presentation</strong>, International Association for Applied Econometrics at Nova SBE (2026)</li>
+            <li><strong>Poster Presentation</strong>, School of Advanced Science in High-Dimensional Modeling at FGV (2025)</li>
+            <li><strong>Invited Talk</strong>, Recent Advances In Statistical Robustness at ESSEC Business School (2025)</li>
+            <li><strong>Invited Talk</strong>, 24th National Symposium on Probability and Statistics — SINAPE (2022)</li>
+            <li>
+                <strong>Gold Medal Winner (As Team Coach)</strong>, International Collegiate Programming Contest (ICPC) Brazilian National Finals (Consecutive Years: 2022, 2023)
+                <div class="inline-links">
+                    <a href="https://impa.br/notices/alunos-do-impa-sao-premiados-em-maratona-de-programacao/" target="_blank" class="btn"><i class="fas fa-newspaper"></i> View IMPA News Feature</a>
+                </div>
+            </li>
+        </ul>
+
+        <h3>Peer Review Activity</h3>
+        <p style="font-size: 0.95rem;">
+            Regular scientific peer reviewer for leading international journals and conferences across theoretical and applied mathematical vectors, including: <span style="font-weight: 600; color: var(--text-dark);">Annals of Statistics, Bernoulli, Electronic Journal of Statistics (EJS), NeurIPS, AISTATS, and PLOS One.</span>
+        </p>
+
+        <h3>Educational Outreach & Community Engagement</h3>
+        <div class="timeline-block" style="margin-top: 1rem;">
+            <div class="row-item">
+                <span class="item-main-title">Espaço de Cria (Nova Iguaçu, RJ)</span>
+                <span class="date-label">2020 — 2021</span>
+            </div>
+            <div class="item-sub-details">Co-founded and coordinated a popular education effort during the COVID-19 pandemic, structuring educational and cultural paths for children in socioeconomically vulnerable communities.</div>
+        </div>
+        <div class="timeline-block">
+            <div class="row-item">
+                <span class="item-main-title">TransEnem (Belo Horizonte, MG)</span>
+                <span class="date-label">2018</span>
+            </div>
+            <div class="item-sub-details">Volunteer Mathematics Instructor, delivering introductory and intermediate college admission preparatory programs for transgender and non-binary students.</div>
+        </div>
+    </section>
+
+    <!-- Footnote Quote Section -->
+    <div class="footnote-quote">
+        "The best thing about being a statistician is that you get to play in everyone's backyard" <br>— John W. Tukey
     </div>
 
-    <div class="research-entry">
-      <div class="research-entry-title">Applied<br>Machine Learning</div>
-        <div class="research-entry-description">
-            I collaborate across public health, economics, and industry to apply modern machine learning and statistical methods to real-world problems.
-            <ul>
-                <li>
-                    <strong>Measuring the impact of primary care gatekeeping via foundation models</strong><br>
-                    <i>with Meilame Tayebjee, Guillaume Lecué and Philippe Choné, ongoing</i><br>
-                    We combine GPT embeddings trained on the entire French national health database with off-policy evaluation to measure how primary care gatekeeping shapes patient outcomes.<br><a class="link-icon" target="_blank" href="https://guillaume-lecue.faculty.essec.edu/graph4health">[Graph4Health's page]</a>
-                </li>
-                <li>
-                    <strong>Epidemiological Modeling for COVID-19 School Reopening</strong><br>
-                    <i>with COMORBUSS team, 2021</i><br>
-                    Developed models to assess the effects of reopening strategies under varying vaccination and masking scenarios, informing public health decisions.
-                    <br><a class="link-icon" target="_blank" href="https://abrasco.org.br/vacinacao-nao-e-suficiente-para-volta-as-aulas-estudo-indica-importancia-de-monitoramento-nas-escolas/">[Technical Note for Policymakers]</a>
-                    <a class="link-icon" target="_blank" href="https://piaui.folha.uol.com.br/escola-aberta-risco-em-alta-matematica-da-covid/">[Outreach on Piauí Magazine]</a>
-                    <a class="link-icon" target="_blank" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0273425">[PLOS One paper]</a>
-                  </li>
-                <li>
-                    <strong>Deep Hashing via Householder Quantization</strong><br>
-                    <i>with Lucas Schwengber, Paulo Orenstein and Roberto Imbuzeiro, 2023</i><br>
-                    Motivated by large-scale similarity search in streaming platforms, this project led to a new deep-hashing quantization method that improves fast retrieval of similar items.
-                    <br><a class="link-icon" target="_blank" href="https://arxiv.org/abs/2311.04207">[View on arXiv]</a>
-                  </li>
-            </ul>
-        </div>
-  </div>
+</div>
 
-
-
-
-      <div class="sep-div"></div>
-
-      <div id="footnote"> "The best thing about being a statistician is that you get to play in everyone's backyard" (J. Tukey)</div>
-
-    </section>
-  </body>
- 
+</body>
 </html>
